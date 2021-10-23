@@ -1,5 +1,27 @@
 import React, {useState} from 'react';
 
+const Anecdote = ({text, count}) => {
+  return (
+    <p>{text} <br/> has {count} votes</p>
+  )
+}
+
+const Winner = ({anecdotes, votes}) => {
+  const max = Math.max(...votes)
+  if (max === 0) {
+    return (
+      <p>No votes yet</p>
+    )
+  }
+  else {
+    const index = votes.indexOf(max)
+    const anecdote = anecdotes[index]
+    return (
+      <p>{anecdote} <br/> has {max} votes</p>
+    )
+  }
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -26,12 +48,10 @@ const App = () => {
 
   return (
     <div>
-      {anecdotes[selected]}
-      <br/>
-      has {votes[selected]} votes
-      <br/>
+      <Anecdote text={anecdotes[selected]} count={votes[selected]} />
       <button onClick={setVotesValue}>Vote</button>
       <button onClick={getAnecdote}>Next anecdote</button>
+      <Winner anecdotes={anecdotes} votes={votes} />
     </div>
   )
 }
