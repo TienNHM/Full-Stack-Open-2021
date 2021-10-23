@@ -1,18 +1,18 @@
 import React from 'react';
 
-const Header = ({course}) => {
+const Header = ({ course }) => {
   return (
     <h1>{course.name}</h1>
   )
 }
 
-const Part = ({part}) => {
+const Part = ({ part }) => {
   return (
     <p>{part.name} {part.exercises}</p>
   )
 }
 
-const Content = ({course}) => {
+const Content = ({ course }) => {
   return (
     <>
       {course.parts.map(part => <Part key={part.id} part={part} />)}
@@ -20,7 +20,7 @@ const Content = ({course}) => {
   )
 }
 
-const Total = ({course}) => {
+const Total = ({ course }) => {
   const sum = course.parts.reduce((sum, part) => sum + part.exercises, 0)
 
   return (
@@ -28,12 +28,12 @@ const Total = ({course}) => {
   )
 }
 
-const Course = ({course}) => {
+const Course = ({ course }) => {
   return (
     <div>
-      <Header course={course}/>
+      <Header course={course} />
       <Content course={course} />
-      <Total course={course}/>
+      <Total course={course} />
     </div>
   )
 }
